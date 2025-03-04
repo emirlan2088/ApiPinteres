@@ -12,6 +12,4 @@ data class ApiResponse(
     var total: Int? = null,
     @SerialName("totalHits")
     var totalHits: Int? = null
-) {
-
-}
+)
