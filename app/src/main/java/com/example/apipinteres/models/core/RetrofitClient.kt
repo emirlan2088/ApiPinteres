@@ -1,6 +1,7 @@
 package com.example.apipinteres.models.core
 
 import com.example.apipinteres.models.servise.ApiService
+import com.example.apipinteres.models.servise.WeatherApiSevice
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
@@ -38,9 +39,16 @@ object RetrofitClient {
             .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
             .build()
     }
+
     @Provides
     @Singleton
     fun provideApiService(retrofit: Retrofit): ApiService {
         return retrofit.create(ApiService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provadeWeatherApiService(retrofit: Retrofit): WeatherApiSevice {
+        return retrofit.create(WeatherApiSevice::class.java)
     }
 }
