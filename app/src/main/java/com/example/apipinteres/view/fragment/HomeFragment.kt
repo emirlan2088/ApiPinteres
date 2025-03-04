@@ -35,11 +35,16 @@ class HomeFragment : Fragment() {
 
     private fun intsiolaze() {
         viewModel.getImages("49142423-5da4f1a42230b6cfb34f4b392", "car")
+        viewModel.getTemperature("1472b6e0ceb74a0d95c135453250902", "Bishkek")
         binding.apply {
             recyclerView.adapter = adapter
-            viewModel.images.observe(viewLifecycleOwner) {response->
+            viewModel.images.observe(viewLifecycleOwner) { response ->
                 adapter.submitList(response.hits)
+            }
+            viewModel.temperature.observe(viewLifecycleOwner) { response ->
+                text.text = response.current?.tempC.toString()
             }
         }
     }
+
 }
